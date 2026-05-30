@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Semhas – Alda Apriani Cantik ✦</title>
+  <meta name="description" content="Undangan Digital Seminar Hasil Skripsi Alda Apriani Cantik" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blush: #F8D7DA;
+      --blush-light: #fdf0f2;
+      --dusty: #D8A7B1;
+      --rose-gold: #B76E79;
+      --rose-dark: #8B4A53;
+      --white: #ffffff;
+      --cream: #FFF8F9;
+      --text-dark: #3a2328;
+      --text-mid: #6b3d46;
+      --shadow-rose: rgba(183,110,121,0.2);
+      --shadow-deep: rgba(58,35,40,0.12);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Poppins',sans-serif;
+      background:var(--blush-light);
+      color:var(--text-dark);
+      overflow-x:hidden;
+      min-height:100vh;
+    }
+
+    /* PARTICLES */
+    #particles-canvas {
+      position:fixed; top:0; left:0;
+      width:100%; height:100%;
+      pointer-events:none; z-index:0;
+    }
+
+    /* ── COVER ── */
+    #cover {
+      position:fixed; inset:0; z-index:100;
+      display:flex; align-items:center; justify-content:center;
+      background:linear-gradient(145deg,#fde8eb 0%,#f5c6cc 40%,#e8a0ab 100%);
+      transition:opacity .8s ease,visibility .8s ease;
+    }
+    #cover.hide { opacity:0; visibility:hidden; pointer-events:none; }
+
+    .cover-inner {
+      text-align:center; padding:2rem;
+      max-width:460px; width:90%; position:relative;
+    }
+    .cover-ornament {
+      display:flex; align-items:center; justify-content:center;
+      gap:12px; margin-bottom:1.4rem;
+    }
+    .cover-ornament-line {
+      width:55px; height:1px;
+      background:linear-gradient(to right,transparent,var(--rose-gold));
+    }
+    .cover-ornament-line.rev { background:linear-gradient(to left,transparent,var(--rose-gold)); }
+    .cover-ornament svg { width:20px;height:20px;fill:var(--rose-gold);opacity:.9; }
+
+    .cover-label {
+      font-size:.68rem; font-weight:600;
+      letter-spacing:.25em; color:var(--rose-gold);
+      text-transform:uppercase; margin-bottom:.5rem;
+    }
+    .cover-title {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.35rem,5vw,1.85rem);
+      font-weight:700; color:var(--rose-dark);
+      line-height:1.3; margin-bottom:1.3rem;
+    }
+    .cover-student {
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(2rem,8vw,2.8rem);
+      color:var(--rose-gold); margin-bottom:1.8rem;
+    }
+    .cover-recipient { font-size:.75rem; color:var(--text-mid); margin-bottom:.3rem; }
+    .cover-recipient-name {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.05rem,4vw,1.35rem);
+      font-weight:600; color:var(--rose-dark); margin-bottom:1.8rem;
+    }
+    .btn-open {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:.85rem 2.2rem;
+      background:linear-gradient(135deg,var(--rose-gold),var(--rose-dark));
+      color:white; border:none; border-radius:50px;
+      font-family:'Poppins',sans-serif; font-size:.85rem;
+      font-weight:500; letter-spacing:.04em; cursor:pointer;
+      box-shadow:0 8px 24px rgba(139,74,83,.35);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .btn-open:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(139,74,83,.45); }
+    .btn-open:active { transform:translateY(0); }
+    .btn-open svg { width:18px;height:18px;fill:white; }
+
+    /* ── MAIN ── */
+    #main {
+      position:relative; z-index:1;
+      min-height:100vh;
+      padding:2rem 1rem 4rem;
+      display:flex; flex-direction:column; align-items:center;
+    }
+    .page-header {
+      text-align:center; margin-bottom:2.2rem; padding-top:1rem;
+      opacity:0; transform:translateY(20px);
+      transition:opacity .7s,transform .7s;
+    }
+    .page-header.visible { opacity:1;transform:translateY(0); }
+    .page-header-label {
+      font-size:.65rem; letter-spacing:.3em;
+      text-transform:uppercase; color:var(--rose-gold);
+      font-weight:600; margin-bottom:.5rem;
+    }
+    .page-header h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.3rem,5vw,1.8rem);
+      color:var(--rose-dark); font-weight:700;
+    }
+
+    /* ── ENVELOPE SECTION ── */
+    .envelope-section {
+      width:100%; max-width:520px;
+      display:flex; flex-direction:column; align-items:center; gap:1.2rem;
+      opacity:0; transform:translateY(30px);
+      transition:opacity .7s .3s,transform .7s .3s;
+    }
+    .envelope-section.visible { opacity:1;transform:translateY(0); }
+
+    /* ENVELOPE */
+    .envelope-wrap { position:relative; width:100%; max-width:380px; cursor:pointer; }
+
+    .envelope-hint {
+      text-align:center; font-size:.7rem; color:var(--rose-gold);
+      letter-spacing:.1em; margin-bottom:.7rem;
+      display:flex; align-items:center; justify-content:center; gap:6px;
+      animation:pulse-hint 2s ease-in-out infinite;
+    }
+    @keyframes pulse-hint { 0%,100%{opacity:.7} 50%{opacity:1} }
+    .envelope-hint svg { width:14px;height:14px;fill:var(--rose-gold); }
+
+    .envelope {
+      width:100%;
+      background:linear-gradient(145deg,#fff5f7 0%,#fde8ec 100%);
+      border-radius:16px;
+      box-shadow:0 12px 40px var(--shadow-rose),0 2px 8px var(--shadow-deep);
+      overflow:hidden; position:relative;
+      transition:transform .3s,box-shadow .3s;
+      border:1px solid rgba(183,110,121,.15);
+    }
+    .envelope:hover:not(.opened) {
+      transform:translateY(-4px);
+      box-shadow:0 20px 50px var(--shadow-rose),0 4px 12px var(--shadow-deep);
+    }
+    .envelope-flap { width:100%; padding-top:42%; position:relative; overflow:hidden; }
+    .flap-shape {
+      position:absolute; top:0;left:0;right:0;height:100%;
+      clip-path:polygon(0 0,100% 0,50% 100%);
+      background:linear-gradient(160deg,#f5b8c0 0%,#e8909c 100%);
+      transform-origin:top center;
+      transition:transform .7s cubic-bezier(.4,0,.2,1);
+    }
+    .flap-inner-shadow {
+      position:absolute;top:0;left:0;right:0;height:100%;
+      clip-path:polygon(0 0,100% 0,50% 100%);
+      background:linear-gradient(160deg,transparent 40%,rgba(139,74,83,.12) 100%);
+      pointer-events:none;
+    }
+    .envelope.opened .flap-shape { transform:rotateX(180deg); }
+    .envelope-body {
+      padding:1.5rem 1.5rem 1.8rem;
+      display:flex; flex-direction:column; align-items:center; gap:1rem;
+    }
+    .envelope-seal {
+      width:50px;height:50px;
+      background:linear-gradient(135deg,var(--rose-gold),var(--rose-dark));
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      box-shadow:0 4px 14px rgba(139,74,83,.3);
+      margin-top:-8px;
+    }
+    .envelope-seal svg { width:22px;height:22px;fill:white; }
+    .envelope-address { text-align:center; }
+    .envelope-address .to-label {
+      font-size:.62rem; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--dusty);
+      font-weight:500; margin-bottom:.2rem;
+    }
+    .envelope-address .recipient {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1rem,3.5vw,1.2rem);
+      color:var(--rose-dark); font-weight:600;
+    }
+    .envelope-deco {
+      width:80px;height:1px;
+      background:linear-gradient(to right,transparent,var(--dusty),transparent);
+    }
+    .envelope-from { font-size:.7rem;color:var(--text-mid);text-align:center;line-height:1.5; }
+
+    /* ── POP-UP MODAL LETTER ── */
+    .modal-overlay {
+      position:fixed; inset:0; z-index:200;
+      background:rgba(58,35,40,.45);
+      backdrop-filter:blur(6px);
+      display:flex; align-items:center; justify-content:center;
+      padding:1rem;
+      opacity:0; visibility:hidden;
+      transition:opacity .4s,visibility .4s;
+    }
+    .modal-overlay.open { opacity:1;visibility:visible; }
+
+    .modal-box {
+      background:var(--white);
+      border-radius:20px;
+      box-shadow:0 24px 70px rgba(58,35,40,.25),0 4px 16px var(--shadow-rose);
+      overflow:hidden;
+      width:100%; max-width:520px;
+      max-height:92vh; overflow-y:auto;
+      transform:scale(.85) translateY(30px);
+      transition:transform .45s cubic-bezier(.34,1.56,.64,1);
+      position:relative;
+    }
+    .modal-overlay.open .modal-box { transform:scale(1) translateY(0); }
+
+    /* scrollbar */
+    .modal-box::-webkit-scrollbar { width:4px; }
+    .modal-box::-webkit-scrollbar-track { background:transparent; }
+    .modal-box::-webkit-scrollbar-thumb { background:var(--dusty); border-radius:2px; }
+
+    /* close btn */
+    .modal-close {
+      position:sticky; top:10px; left:100%;
+      width:34px;height:34px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(183,110,121,.25);
+      border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      cursor:pointer; z-index:10;
+      margin-right:10px; margin-top:10px;
+      box-shadow:0 2px 8px var(--shadow-rose);
+      transition:background .2s,transform .2s;
+      float:right;
+    }
+    .modal-close:hover { background:var(--blush); transform:scale(1.08); }
+    .modal-close svg { width:16px;height:16px;fill:var(--rose-dark); }
+
+    /* letter header */
+    .letter-header {
+      background:linear-gradient(135deg,var(--rose-gold) 0%,var(--rose-dark) 100%);
+      padding:1.8rem 1.5rem 1.5rem;
+      text-align:center; position:relative; overflow:hidden;
+      clear:both;
+    }
+    .letter-header::before {
+      content:''; position:absolute;
+      top:-30px;right:-30px;
+      width:100px;height:100px;border-radius:50%;
+      background:rgba(255,255,255,.08);
+    }
+    .letter-header::after {
+      content:''; position:absolute;
+      bottom:-20px;left:-20px;
+      width:80px;height:80px;border-radius:50%;
+      background:rgba(255,255,255,.06);
+    }
+    .letter-header-label {
+      font-size:.6rem;letter-spacing:.3em;
+      text-transform:uppercase;color:rgba(255,255,255,.75);
+      margin-bottom:.4rem;
+    }
+    .letter-header h2 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.05rem,4vw,1.45rem);
+      color:white;font-weight:700;
+    }
+
+    /* letter body */
+    .letter-body { padding:1.8rem 1.5rem; }
+
+    .letter-greeting {
+      font-size:.82rem;line-height:1.85;color:var(--text-mid);margin-bottom:1.3rem;
+    }
+    .letter-greeting strong {
+      font-weight:600;color:var(--rose-dark);
+      display:block;
+      font-family:'Playfair Display',serif;
+      font-size:.9rem;margin-bottom:.6rem;
+    }
+
+    /* info cards */
+    .info-section { margin:1.3rem 0; }
+    .info-section-title {
+      font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;
+      color:var(--rose-gold);font-weight:600;text-align:center;
+      margin-bottom:.9rem;
+      display:flex;align-items:center;gap:10px;
+    }
+    .info-section-title::before,.info-section-title::after {
+      content:'';flex:1;height:1px;
+      background:linear-gradient(to right,transparent,var(--dusty));
+    }
+    .info-section-title::after { background:linear-gradient(to left,transparent,var(--dusty)); }
+
+    .info-grid { display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem; }
+
+    .info-card {
+      background:linear-gradient(135deg,var(--blush-light) 0%,rgba(248,215,218,.5) 100%);
+      border:1px solid rgba(183,110,121,.15);
+      border-radius:12px;padding:.9rem;
+      transition:transform .2s,box-shadow .2s;
+    }
+    .info-card:hover { transform:translateY(-2px);box-shadow:0 6px 20px var(--shadow-rose); }
+    .info-card.full { grid-column:1/-1; }
+
+    .info-card-icon {
+      width:30px;height:30px;
+      background:linear-gradient(135deg,var(--rose-gold),var(--rose-dark));
+      border-radius:8px;display:flex;align-items:center;justify-content:center;
+      margin-bottom:.55rem;
+    }
+    .info-card-icon svg { width:15px;height:15px;fill:white; }
+    .info-card-label {
+      font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;
+      color:var(--dusty);font-weight:600;margin-bottom:.2rem;
+    }
+    .info-card-value { font-size:.8rem;font-weight:600;color:var(--rose-dark);line-height:1.4; }
+    .info-card-sub { font-size:.7rem;color:var(--text-mid);margin-top:.1rem; }
+
+    /* personal note */
+    .personal-note {
+      background:linear-gradient(135deg,#fff0f2,#fde8ec);
+      border-left:3px solid var(--rose-gold);
+      border-radius:0 12px 12px 0;
+      padding:1rem 1.2rem;margin:1.2rem 0;
+      font-size:.8rem;line-height:1.85;color:var(--text-mid);font-style:italic;
+    }
+
+    /* closing */
+    .letter-closing {
+      font-size:.8rem;line-height:1.85;color:var(--text-mid);margin-top:1rem;
+    }
+    .letter-divider {
+      width:100%;height:1px;
+      background:linear-gradient(to right,transparent,var(--blush),transparent);
+      margin:1.4rem 0;
+    }
+
+    /* signature */
+    .signature-area { text-align:center;padding:1rem 0; }
+    .signature-city-date { font-size:.72rem;color:var(--text-mid);margin-bottom:.5rem; }
+    .signature-role { font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dusty);margin-bottom:.3rem; }
+    .signature-script {
+      font-family:'Great Vibes',cursive;
+      font-size:clamp(2rem,8vw,2.8rem);
+      color:var(--rose-gold);line-height:1.2;margin:.3rem 0;
+    }
+    .signature-underline {
+      width:120px;height:2px;
+      background:linear-gradient(to right,transparent,var(--rose-gold),transparent);
+      margin:0 auto .4rem;
+    }
+    .signature-name-formal {
+      font-family:'Playfair Display',serif;
+      font-size:.88rem;font-weight:600;color:var(--rose-dark);
+    }
+
+    /* letter footer */
+    .letter-footer {
+      background:linear-gradient(135deg,#fde8ec,#f5c6cc);
+      padding:1.2rem 1.5rem;text-align:center;
+      font-size:.7rem;color:var(--text-mid);line-height:1.6;
+    }
+
+    /* bottom ornament */
+    .bottom-ornament {
+      margin-top:2rem;text-align:center;
+      font-size:.68rem;color:var(--dusty);letter-spacing:.1em;
+      opacity:0;transition:opacity .7s .6s;
+    }
+    .bottom-ornament.visible { opacity:1; }
+
+    @media(max-width:400px){
+      .info-grid{grid-template-columns:1fr;}
+      .info-card.full{grid-column:1;}
+      .letter-body{padding:1.4rem 1.1rem;}
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<!-- ── COVER ── -->
+<div id="cover">
+  <div class="cover-inner">
+    <div class="cover-ornament">
+      <div class="cover-ornament-line"></div>
+      <svg viewBox="0 0 24 24"><path d="M12 2L9.1 8.6 2 9.3l5.5 5-1.6 7.1L12 17.8l6.1 3.6-1.6-7.1 5.5-5-7.1-.7z"/></svg>
+      <div class="cover-ornament-line rev"></div>
+    </div>
+    <div class="cover-label">Undangan Semhas</div>
+    <div class="cover-title">Seminar Hasil<br />Skripsweet</div>
+    <div class="cover-student">Alda Apriani Cantik ✦</div>
+    <div class="cover-recipient" id="cover-recipient-label">Untuk</div>
+    <div class="cover-recipient-name" id="cover-recipient-name">Teman-teman Yth</div>
+    <button class="btn-open" onclick="openInvitation()">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Buka Undangan
+    </button>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<div id="main">
+  <div class="page-header" id="page-header">
+    <div class="page-header-label">✦ Undangan Ngga Resmi-Resmi Banget ✦</div>
+    <h1>Seminar Hasil</h1>
+  </div>
+
+  <div class="envelope-section" id="envelope-section">
+
+    <!-- ENVELOPE -->
+    <div class="envelope-wrap" id="envelope-wrap" onclick="openLetter()">
+      <div class="envelope-hint" id="envelope-hint">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Klik untuk membuka surat
+      </div>
+      <div class="envelope" id="envelope">
+        <div class="envelope-flap">
+          <div class="flap-shape"></div>
+          <div class="flap-inner-shadow"></div>
+        </div>
+        <div class="envelope-body">
+          <div class="envelope-seal">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5L12 1zm-2 16-4-4 1.4-1.4L10 14.2l6.6-6.6L18 9l-8 8z"/></svg>
+          </div>
+          <div class="envelope-address">
+            <div class="to-label">Untuk</div>
+            <div class="recipient" id="env-recipient">Teman-teman Yth</div>
+          </div>
+          <div class="envelope-deco"></div>
+          <div class="envelope-from">dari<br /><strong>Alda Apriani Cantik ✦</strong></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bottom-ornament" id="bottom-ornament">
+    ✦ &nbsp; Dibuka yaww suratnya &nbsp; ✦
+  </div>
+</div>
+
+<!-- ── POP-UP MODAL ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+  <div class="modal-box" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    </button>
+
+    <div class="letter-header">
+      <div class="letter-header-label">✦ Surat Undangan ✦</div>
+      <h2>Seminar Hasil Skripsweet</h2>
+    </div>
+
+    <div class="letter-body">
+      <div class="letter-greeting">
+        <strong>Assalamu'alaikum Warahmatullahi Wabarakatuh.</strong>
+        <span id="letter-recipient" style="font-weight:600;color:var(--rose-dark)">Alloww Guysss</span>.....
+      </div>
+      <div class="letter-greeting">
+        Aku mau undang kalian untuk hadir di after semhas aku yang akan dilaksanakan pada :
+      </div>
+
+      <div class="info-section">
+        <div class="info-section-title">Informasi Kegiatan</div>
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+            </div>
+            <div class="info-card-label">Hari</div>
+            <div class="info-card-value">Kamis</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg>
+            </div>
+            <div class="info-card-label">Tanggal</div>
+            <div class="info-card-value">04 Juni 202</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            </div>
+            <div class="info-card-label">Waktu</div>
+            <div class="info-card-value">Menyusul</div>
+            <div class="info-card-sub">s.d. selesai</div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div class="info-card-label">Tempat</div>
+            <div class="info-card-value">RTH Potorono</div>
+            <div class="info-card-sub">https://maps.app.goo.gl/ l<br />gKi3xAoFmYqdGV29A?g_st=iw</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="letter-closing">
+        Klo ada waktu jangan lupa datang yaa, untuk mengabadikan momen-momen kita sebelum wisuda dan wajib foto-foto untuk kenangan kita...  
+      </div>
+      <div class="letter-closing">
+        Uhuyyy
+      </div>
+
+      <div class="letter-divider"></div>
+
+      <div class="signature-area">
+        <div class="signature-city-date">Yogyakarta, Juni 2026</div>
+        <div class="signature-role">Salam Hangat,</div>
+        <div class="signature-script" >Alda Apriani Cantik ✦</div>
+        <div class="signature-underline"></div>
+        <div class="signature-name-formal">Alda Apriani Cantik ✦</div>
+      </div>
+    </div>
+
+    <div class="letter-footer">
+      ✦ &nbsp; Disampaikan dengan penuh ketulusan dan kasih sayang &nbsp; ✦ <br />
+      Seminar Hasil Skripsweet · Alda Apriani Cantik ✦
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ── URL recipient ── */
+  const params      = new URLSearchParams(window.location.search);
+  const recipientRaw = params.get('to') || params.get('kepada') || '';
+  const recipient   = recipientRaw.trim() || 'Bapak/Ibu/Saudara/i';
+
+  if (recipientRaw) {
+    ['cover-recipient-name','env-recipient',
+     'letter-recipient','letter-recipient2',
+     'note-recipient','closing-recipient']
+      .forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = recipient;
+      });
+  }
+
+  /* ── cover → main ── */
+  function openInvitation() {
+    document.getElementById('cover').classList.add('hide');
+    setTimeout(() => {
+      document.body.style.overflow = 'auto';
+      document.getElementById('page-header').classList.add('visible');
+      document.getElementById('envelope-section').classList.add('visible');
+      document.getElementById('bottom-ornament').classList.add('visible');
+    }, 400);
+  }
+
+  /* ── open letter (envelope anim then modal pop-up) ── */
+  let letterOpen = false;
+  function openLetter() {
+    if (letterOpen) return;
+    letterOpen = true;
+    const env  = document.getElementById('envelope');
+    const hint = document.getElementById('envelope-hint');
+    hint.style.opacity = '0';
+    env.classList.add('opened');
+    document.getElementById('envelope-wrap').style.cursor = 'default';
+
+    // after flap animation finishes, show modal
+    setTimeout(() => {
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }, 650);
+  }
+
+  /* ── close modal ── */
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = 'auto';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  /* ── particles ── */
+  (function() {
+    const canvas = document.getElementById('particles-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H, pts;
+    const cols = ['rgba(183,110,121,','rgba(216,167,177,','rgba(248,215,218,'];
+
+    function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+    function init() {
+      const n = Math.min(55, Math.floor(W * H / 16000));
+      pts = Array.from({length:n}, () => ({
+        x: Math.random()*W, y: Math.random()*H,
+        r: Math.random()*3+1,
+        dx:(Math.random()-.5)*.3,
+        dy:-Math.random()*.4-.1,
+        a: Math.random()*.35+.05,
+        c: cols[Math.floor(Math.random()*cols.length)]
+      }));
+    }
+    function draw() {
+      ctx.clearRect(0,0,W,H);
+      pts.forEach(p => {
+        ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle = p.c+p.a+')'; ctx.fill();
+        p.x+=p.dx; p.y+=p.dy;
+        if(p.y<-10){p.y=H+10;p.x=Math.random()*W;}
+        if(p.x<-10)p.x=W+10;
+        if(p.x>W+10)p.x=-10;
+      });
+      requestAnimationFrame(draw);
+    }
+    window.addEventListener('resize',()=>{resize();init();});
+    resize();init();draw();
+  })();
+</script>
+</body>
+</html>
